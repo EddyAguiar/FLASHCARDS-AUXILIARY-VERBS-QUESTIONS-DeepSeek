@@ -1,0 +1,399 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards: Verbos Auxiliares para Perguntas</title>
+    <style>
+        :root {
+            --presente: #4285F4;
+            --passado: #EA4335;
+            --futuro: #34A853;
+            --modal: #FBBC05;
+            --destaque: #9C27B0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #2d3748;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+        
+        .flashcards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .flashcard {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 5px solid;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .flashcard:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .presente { border-color: var(--presente); }
+        .passado { border-color: var(--passado); }
+        .futuro { border-color: var(--futuro); }
+        .modal { border-color: var(--modal); }
+        .to-be { border-color: var(--destaque); }
+        
+        .flashcard-header {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .flashcard-header .emoji {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .content {
+            display: none;
+        }
+        
+        .content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .question {
+            color: #4a5568;
+            font-weight: 500;
+            margin-bottom: 15px;
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 8px;
+        }
+        
+        .answer {
+            background: #ebf8ff;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 3px solid #4299e1;
+        }
+        
+        .explanation {
+            background: #f0fff4;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 3px solid #48bb78;
+        }
+        
+        .examples {
+            background: #fff5f5;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 3px solid #f56565;
+        }
+        
+        .aux-verb {
+            font-weight: 700;
+            color: #2b6cb0;
+            background: #e3f2fd;
+            padding: 0 4px;
+            border-radius: 3px;
+        }
+        
+        .check {
+            color: #48bb78;
+            margin-right: 5px;
+        }
+        
+        .example-item {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .example-item:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #718096;
+        }
+        
+        .time-label {
+            display: inline-block;
+            padding: 2px 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📚 Flashcards: Verbos Auxiliares para Perguntas</h1>
+    
+    <div class="flashcards-container">
+        <!-- Present Simple -->
+        <div class="flashcard presente" onclick="revealContent(this)">
+            <div class="flashcard-header">
+                <span class="emoji">🔵</span> Presente Simples (do/does)
+            </div>
+            <div class="content">
+                <div class="question">Como formar perguntas no presente simples?</div>
+                <div class="content">
+                    <div class="answer">Use <span class="aux-verb">do</span> (I/you/we/they) ou <span class="aux-verb">does</span> (he/she/it) + sujeito + verbo principal</div>
+                    <div class="content">
+                        <div class="explanation">
+                            <p><span class="check">✅</span> <span class="aux-verb">Do/Does</span> são auxiliares para perguntas e negativas no presente simples</p>
+                            <p><span class="check">⚠️</span> Com <span class="aux-verb">does</span>, o verbo principal fica na forma base (sem -s)</p>
+                        </div>
+                        <div class="content">
+                            <div class="examples">
+                                <p><strong>Exemplos:</strong></p>
+                                <div class="example-item">
+                                    <span class="time-label">Presente</span> "<span class="aux-verb">Do</span> you like coffee?" (Você gosta de café?)
+                                </div>
+                                <div class="example-item">
+                                    <span class="time-label">Presente</span> "<span class="aux-verb">Does</span> she work here?" (Ela trabalha aqui?)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Past Simple -->
+        <div class="flashcard passado" onclick="revealContent(this)">
+            <div class="flashcard-header">
+                <span class="emoji">🔴</span> Passado Simples (did)
+            </div>
+            <div class="content">
+                <div class="question">Como formar perguntas no passado simples?</div>
+                <div class="content">
+                    <div class="answer">Use <span class="aux-verb">did</span> para todos os sujeitos + verbo principal no infinitivo</div>
+                    <div class="content">
+                        <div class="explanation">
+                            <p><span class="check">✅</span> <span class="aux-verb">Did</span> é o auxiliar para todas as pessoas no passado simples</p>
+                            <p><span class="check">⚠️</span> O verbo principal sempre fica na forma base (passado é indicado pelo did)</p>
+                        </div>
+                        <div class="content">
+                            <div class="examples">
+                                <p><strong>Exemplos:</strong></p>
+                                <div class="example-item">
+                                    <span class="time-label">Passado</span> "<span class="aux-verb">Did</span> they arrive on time?" (Eles chegaram na hora?)
+                                </div>
+                                <div class="example-item">
+                                    <span class="time-label">Passado</span> "<span class="aux-verb">Did</span> he call you yesterday?" (Ele te ligou ontem?)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Future Simple -->
+        <div class="flashcard futuro" onclick="revealContent(this)">
+            <div class="flashcard-header">
+                <span class="emoji">🟢</span> Futuro Simples (will)
+            </div>
+            <div class="content">
+                <div class="question">Como formar perguntas no futuro simples?</div>
+                <div class="content">
+                    <div class="answer">Use <span class="aux-verb">will</span> + sujeito + verbo principal</div>
+                    <div class="content">
+                        <div class="explanation">
+                            <p><span class="check">✅</span> <span class="aux-verb">Will</span> é o auxiliar para todas as pessoas no futuro simples</p>
+                            <p><span class="check">⚠️</span> O verbo principal fica sempre na forma base</p>
+                        </div>
+                        <div class="content">
+                            <div class="examples">
+                                <p><strong>Exemplos:</strong></p>
+                                <div class="example-item">
+                                    <span class="time-label">Futuro</span> "<span class="aux-verb">Will</span> you help me tomorrow?" (Você vai me ajudar amanhã?)
+                                </div>
+                                <div class="example-item">
+                                    <span class="time-label">Futuro</span> "<span class="aux-verb">Will</span> they travel next month?" (Eles vão viajar mês que vem?)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- To Be Present -->
+        <div class="flashcard to-be" onclick="revealContent(this)">
+            <div class="flashcard-header">
+                <span class="emoji">🟣</span> Verbo To Be (Presente)
+            </div>
+            <div class="content">
+                <div class="question">Como formar perguntas com 'to be' no presente?</div>
+                <div class="content">
+                    <div class="answer">Inverta o sujeito e o verbo: <span class="aux-verb">am/is/are</span> + sujeito</div>
+                    <div class="content">
+                        <div class="explanation">
+                            <p><span class="check">✅</span> <span class="aux-verb">Am</span> (I), <span class="aux-verb">is</span> (he/she/it), <span class="aux-verb">are</span> (you/we/they)</p>
+                            <p><span class="check">⚠️</span> Não use 'do/does' com 'to be'</p>
+                        </div>
+                        <div class="content">
+                            <div class="examples">
+                                <p><strong>Exemplos:</strong></p>
+                                <div class="example-item">
+                                    <span class="time-label">Presente</span> "<span class="aux-verb">Are</span> you ready?" (Você está pronto?)
+                                </div>
+                                <div class="example-item">
+                                    <span class="time-label">Presente</span> "<span class="aux-verb">Is</span> she at home?" (Ela está em casa?)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- To Be Past -->
+        <div class="flashcard to-be" onclick="revealContent(this)">
+            <div class="flashcard-header">
+                <span class="emoji">🟠</span> Verbo To Be (Passado)
+            </div>
+            <div class="content">
+                <div class="question">Como formar perguntas com 'to be' no passado?</div>
+                <div class="content">
+                    <div class="answer">Inverta o sujeito e o verbo: <span class="aux-verb">was/were</span> + sujeito</div>
+                    <div class="content">
+                        <div class="explanation">
+                            <p><span class="check">✅</span> <span class="aux-verb">Was</span> (I/he/she/it), <span class="aux-verb">were</span> (you/we/they)</p>
+                            <p><span class="check">⚠️</span> Não use 'did' com 'to be' no passado</p>
+                        </div>
+                        <div class="content">
+                            <div class="examples">
+                                <p><strong>Exemplos:</strong></p>
+                                <div class="example-item">
+                                    <span class="time-label">Passado</span> "<span class="aux-verb">Were</span> you at the party?" (Você estava na festa?)
+                                </div>
+                                <div class="example-item">
+                                    <span class="time-label">Passado</span> "<span class="aux-verb">Was</span> he angry yesterday?" (Ele estava bravo ontem?)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal Verbs -->
+        <div class="flashcard modal" onclick="revealContent(this)">
+            <div class="flashcard-header">
+                <span class="emoji">🟡</span> Verbos Modais (can/could/may/might/should/must)
+            </div>
+            <div class="content">
+                <div class="question">Como formar perguntas com verbos modais?</div>
+                <div class="content">
+                    <div class="answer">Inverta o sujeito e o modal: <span class="aux-verb">modal</span> + sujeito + verbo principal</div>
+                    <div class="content">
+                        <div class="explanation">
+                            <p><span class="check">✅</span> Verbos modais não mudam de forma (não acrescentamos -s na 3ª pessoa)</p>
+                            <p><span class="check">⚠️</span> O verbo principal fica sempre na forma base</p>
+                        </div>
+                        <div class="content">
+                            <div class="examples">
+                                <p><strong>Exemplos:</strong></p>
+                                <div class="example-item">
+                                    <span class="time-label">Habilidade</span> "<span class="aux-verb">Can</span> you swim?" (Você sabe nadar?)
+                                </div>
+                                <div class="example-item">
+                                    <span class="time-label">Permissão</span> "<span class="aux-verb">May</span> I leave early?" (Posso sair mais cedo?)
+                                </div>
+                                <div class="example-item">
+                                    <span class="time-label">Conselho</span> "<span class="aux-verb">Should</span> we call the doctor?" (Devemos chamar o médico?)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Would -->
+        <div class="flashcard modal" onclick="revealContent(this)">
+            <div class="flashcard-header">
+                <span class="emoji">🟤</span> Would (Condicional/Pedidos)
+            </div>
+            <div class="content">
+                <div class="question">Como usar 'would' em perguntas?</div>
+                <div class="content">
+                    <div class="answer">Use <span class="aux-verb">would</span> + sujeito + verbo principal</div>
+                    <div class="content">
+                        <div class="explanation">
+                            <p><span class="check">✅</span> Para perguntas condicionais ou pedidos educados</p>
+                            <p><span class="check">⚠️</span> Forma contraída: 'd (ex: "What'd you do?")</p>
+                        </div>
+                        <div class="content">
+                            <div class="examples">
+                                <p><strong>Exemplos:</strong></p>
+                                <div class="example-item">
+                                    <span class="time-label">Condicional</span> "<span class="aux-verb">Would</span> you travel if you had money?" (Você viajaria se tivesse dinheiro?)
+                                </div>
+                                <div class="example-item">
+                                    <span class="time-label">Pedido</span> "<span class="aux-verb">Would</span> you please help me?" (Você poderia me ajudar, por favor?)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function revealContent(card) {
+            const contents = card.querySelectorAll('.content');
+            let foundActive = false;
+            
+            contents.forEach(content => {
+                if (!foundActive && !content.classList.contains('active')) {
+                    content.classList.add('active');
+                    foundActive = true;
+                } else if (foundActive) {
+                    content.classList.remove('active');
+                }
+            });
+            
+            // Reset if all are active
+            if (!foundActive) {
+                contents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                contents[0].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
